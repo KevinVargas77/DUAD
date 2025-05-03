@@ -2,11 +2,8 @@
 
 import data_entry, data_views, data_exp_imp
 
-students = []
-
 
 def show_menu():
-    global students
     while True:
         print("\n=== MENU ===")
         print("1. Add Students")
