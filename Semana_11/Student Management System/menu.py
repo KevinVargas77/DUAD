@@ -3,7 +3,13 @@
 import data_entry, data_views, data_exp_imp
 
 
+"""menu: will contain all the logic related to the menu options."""
+
+import data_entry, data_views, data_exp_imp
+
 def show_menu():
+    students = []  
+
     while True:
         print("\n=== MENU ===")
         print("1. Add Students")
@@ -13,7 +19,6 @@ def show_menu():
         print("5. Export to CSV")
         print("6. Import from CSV")
         print("7. Exit")
-
 
         choice = input("Option: ")
 
@@ -28,8 +33,7 @@ def show_menu():
             if not students:
                 print("No students available. Please add or import first.")
             else:
-                sorted_list = data_views.sorted_averages(students)
-                data_views.top_3_averages(sorted_list)
+                data_views.top_3_averages(students)
         elif choice == "4":
             if not students:
                 print("No students available.")

@@ -1,25 +1,27 @@
+
 """data: will contain all the logic for exporting and importing data."""
 
 import csv
 import os
+from student import Student
+from subject import Subject
 
 def import_from_csv(filename="students.csv"):
     if not os.path.exists(filename):
         print("No exported file found. Please enter the data first.")
         return []
 
+    students = []
     with open(filename, mode="r") as file:
         reader = csv.DictReader(file)
-        students = []
         for row in reader:
-            student = {
-                "Full_name": row["Full_name"],
-                "Section": row["Section"],
-                "Spanish_grade": int(row["Spanish_grade"]),
-                "English_grade": int(row["English_grade"]),
-                "Social_studies_grade": int(row["Social_studies_grade"]),
-                "Science_grade": int(row["Science_grade"])
-            }
+            subjects = [
+                Subject("Spanish", int(row["Spanish_grade"])),
+                Subject("English", int(row["English_grade"])),
+                Subject("Social_studies", int(row["Social_studies_grade"])),
+                Subject("Science", int(row["Science_grade"]))
+            ]
+            student = Student(row["Full_name"], row["Section"], subjects)
             students.append(student)
     print("✅ Students imported successfully.")
     return students
@@ -31,5 +33,6 @@ def export_to_csv(students, filename="students.csv"):
             "Full_name", "Section", "Spanish_grade", "English_grade", "Social_studies_grade", "Science_grade"
         ])
         writer.writeheader()
-        writer.writerows(students)
+        for student in students:
+            writer.writerow(student.to_dict())
     print("✅ Students exported to CSV successfully.")

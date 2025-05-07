@@ -1,5 +1,8 @@
 """data_entry: will contain all the logic for the menu options regarding entry the students data"""
 
+from subject import Subject
+from student import Student
+
 def ask_number_of_students():
     while True:
         try:
@@ -43,19 +46,12 @@ def collect_student_info(index):
         else:
             print("Section must contain both letters and numbers, like '11B'.")
 
-    spanish = get_valid_grade("Spanish")
-    english = get_valid_grade("English")
-    social = get_valid_grade("Social studies")
-    science = get_valid_grade("Science")
+    subjects = []
+    for subject_name in ["Spanish", "English", "Social_studies", "Science"]:
+        grade = get_valid_grade(subject_name)
+        subjects.append(Subject(subject_name, grade))
 
-    return {
-        "Full_name": full_name,
-        "Section": section,
-        "Spanish_grade": spanish,
-        "English_grade": english,
-        "Social_studies_grade": social,
-        "Science_grade": science
-    }
+    return Student(full_name, section, subjects)
 
 
 def students_entry():
