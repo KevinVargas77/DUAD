@@ -3,10 +3,10 @@
 
 import csv
 import os
-from student import Student
-from subject import Subject
+from models.student import Student
+from models.subject import Subject
 
-def import_from_csv(filename="students.csv"):
+def import_from_csv(filename="data/students.csv"):
     if not os.path.exists(filename):
         print("No exported file found. Please enter the data first.")
         return []
@@ -23,11 +23,11 @@ def import_from_csv(filename="students.csv"):
             ]
             student = Student(row["Full_name"], row["Section"], subjects)
             students.append(student)
-    print("✅ Students imported successfully.")
+    print("Students imported successfully.")
     return students
 
 
-def export_to_csv(students, filename="students.csv"):
+def export_to_csv(students, filename="data/students.csv"):
     with open(filename, mode="w", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=[
             "Full_name", "Section", "Spanish_grade", "English_grade", "Social_studies_grade", "Science_grade"
@@ -35,4 +35,4 @@ def export_to_csv(students, filename="students.csv"):
         writer.writeheader()
         for student in students:
             writer.writerow(student.to_dict())
-    print("✅ Students exported to CSV successfully.")
+    print("Students exported to CSV successfully.")

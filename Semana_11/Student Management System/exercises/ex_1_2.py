@@ -19,6 +19,7 @@ class Bus:
         self.max_passengers = max_passengers
         self.passengers = []
     
+
     def add_passenger(self,person):
         if len(self.passengers) >= self.max_passengers:
             print("The bus is full, cannot board.")
@@ -26,9 +27,12 @@ class Bus:
             self.passengers.append(person)
             print(f"Passenger with ticket {person.ticket} boarded.")
     
+    
     def remove_passenger(self, person):
-        if person in self.passengers:
-            self.passengers.remove(person)
-            print(f"Passenger with ticket {person.ticket} has left the bus.")
-        else:
-            print("This passenger is not on the bus.")
+        for p in self.passengers:
+            if p.ticket == person.ticket:
+                self.passengers.remove(p)
+                print(f"Passenger with ticket {p.ticket} has left the bus.")
+                return
+        print("This passenger is not on the bus.")
+

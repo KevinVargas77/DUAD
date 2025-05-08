@@ -36,8 +36,9 @@ class LowerBody:
         self.right_leg = right_leg
 
 class Human:
-    def __init__(self, head, torso, lower_body,skin_color):
+    def __init__(self, head, torso, lower_body, skin_color, height):
         self.head = head
         self.torso = torso
         self.lower_body = lower_body
-        self.skin_color
+        self.skin_color = skin_color
+        self.height = height

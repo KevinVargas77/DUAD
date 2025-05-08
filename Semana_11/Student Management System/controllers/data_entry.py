@@ -1,7 +1,7 @@
 """data_entry: will contain all the logic for the menu options regarding entry the students data"""
 
-from subject import Subject
-from student import Student
+from models.subject import Subject
+from models.student import Student
 
 def ask_number_of_students():
     while True:

@@ -1,11 +1,12 @@
 """menu: will contain all the logic related to the menu options."""
 
-import data_entry, data_views, data_exp_imp
+from controllers import data_entry, data_views, data_exp_imp
+from models.subject import Subject
+from models.student import Student
+from exercises.exercises_runner import run_ex_1_2, run_ex_4_human
 
 
 """menu: will contain all the logic related to the menu options."""
-
-import data_entry, data_views, data_exp_imp
 
 def show_menu():
     students = []  
@@ -18,7 +19,9 @@ def show_menu():
         print("4. View Overall Average")
         print("5. Export to CSV")
         print("6. Import from CSV")
-        print("7. Exit")
+        print("7. Run Exercises 1–2 (Circle & Bus)")
+        print("8. Run Exercise 4 (Human)")
+        print("9. Exit")
 
         choice = input("Option: ")
 
@@ -48,6 +51,10 @@ def show_menu():
         elif choice == "6":
             students = data_exp_imp.import_from_csv()
         elif choice == "7":
+            run_ex_1_2()
+        elif choice == "8":
+            run_ex_4_human()
+        elif choice == "9":
             print("Exiting.")
             break
         else:

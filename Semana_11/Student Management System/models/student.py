@@ -1,5 +1,5 @@
 
-from subject import Subject
+from models import subject
 
 class Student: 
     def __init__(self, full_name, section, subjects):
