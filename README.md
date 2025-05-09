@@ -5,7 +5,7 @@ Each folder represents one week of structured practice and learning.
 
 ## Structure
 DUAD/M1 (Python) ├── week1/ ├── week2/ ├── week3/ ├── week4/ ├── week5/ ├── week6/ ├── week7/ └── week8/└── week9/
-
+└── week10/└── week11/
 ## Topics Covered
 
 ### Weeks 1–3 (Conceptual and algorithmic foundations)
@@ -24,9 +24,10 @@ DUAD/M1 (Python) ├── week1/ ├── week2/ ├── week3/ ├── we
 - Terminal usage and basic file handling
 ### week 9
 - How to use Git and GitHub
-- 
 ### week 10 
-- Learn what modules are and how to use them to better divide and organize code.
+- Learn what modules are and how to use them to divide better and organize code.
+### week 11
+- Object-Oriented Programming (OOP).
   
 ## Objective
-This repository serves as a learning log of my development progress during the DUAD program.
+This repository is a learning log of my development progress during the DUAD program.
