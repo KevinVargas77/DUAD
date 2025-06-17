@@ -1,0 +1,13 @@
+user_id,date,title,amount,category,description,movement_type
+KV728,2025-06-16,cena,15000.0,Comida,,expense
+JA963,2025-06-16,Cena,15000.0,Comida,,expense
+KV728,2025-06-16,Viaje,4500.0,Transporte,,expense
+MT386,2025-01-01,Test Income,1000.0,Salary,,income
+CT435,2025-01-01,Income,1000.0,Work,,income
+CT435,2025-01-02,Expense,200.0,Food,,expense
+MT935,2025-01-01,Test Income,1000.0,Salary,,income
+CT818,2025-01-01,Income,1000.0,Work,,income
+CT818,2025-01-02,Expense,200.0,Food,,expense
+TU214,2025-06-16,Salary,1000.0,Job,,income
+TU214,2025-06-16,Lunch,200.0,Food,,expense
+TU526,2025-06-16,Movie,50,Entertainment,,expense
