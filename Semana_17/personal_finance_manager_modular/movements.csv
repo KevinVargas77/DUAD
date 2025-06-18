@@ -10,4 +10,5 @@ CT818,2025-01-01,Income,1000.0,Work,,income
 CT818,2025-01-02,Expense,200.0,Food,,expense
 TU214,2025-06-16,Salary,1000.0,Job,,income
 TU214,2025-06-16,Lunch,200.0,Food,,expense
-TU526,2025-06-16,Movie,50,Entertainment,,expense
+TU526,2025-06-16,Movie,50.0,Entertainment,,expense
+KV728,2025-06-17,Comida,10000.0,Comida,,expense

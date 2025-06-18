@@ -12,6 +12,9 @@ class TransactionManager:
         if not user:
             raise ValueError("User not found")
 
+        if amount <= 0:
+            raise ValueError("Amount must be a positive number")
+
         movement = Movement(user_id, title, amount, category, date, movement_type, description)
         self.movements.append(movement)
         save_movements(self.movements)
