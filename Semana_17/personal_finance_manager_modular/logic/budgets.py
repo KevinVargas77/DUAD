@@ -9,6 +9,9 @@ class BudgetManager:
         self.budgets = self.load_budgets()
 
     def set_budget(self, user_id, category, amount):
+        if amount <= 0:
+            raise ValueError("Budget amount must be a positive number")
+
         if user_id not in self.budgets:
             self.budgets[user_id] = {}
         self.budgets[user_id][category] = amount
