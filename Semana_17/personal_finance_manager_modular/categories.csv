@@ -1,0 +1,4 @@
+name,type,description
+Comida,expense,Gastos de alimentacion
+Salario,income,Salario quincenal
+Transporte,expense,Gastos de transporte
