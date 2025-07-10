@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "Learn Flask",
+        "description": "Build an API with JSON storage",
+        "status": "To Do"
+    },
+    {
+        "id": 2,
+        "title": "Learn APIs",
+        "description": "Learn how to work with APIs",
+        "status": "In Progress"
+    },
+    {
+        "id": 3,
+        "title": "Learn Postman",
+        "description": "Learn how to work with APIs",
+        "status": "Completed"
+    },
+    {
+        "id": 4,
+        "title": "Learn Postman",
+        "description": "Learn how to work with APIs",
+        "status": "Completed"
+    }
+]
