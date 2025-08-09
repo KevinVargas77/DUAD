@@ -1,0 +1,79 @@
+
+Normalization Exercises – Documentation (SQLite)
+
+Part A — ORDER BY, LIMIT, GROUP BY, JOINs (with examples)
+
+1) ORDER BY
+Sort result sets by one or more columns. ASC (default) / DESC.
+Examples:
+-- Items by price descending, then by name
+SELECT item_id, name, price
+FROM items
+ORDER BY price DESC, name ASC;
+
+-- Vehicles by year, newest first
+SELECT vin, make, model, year
+FROM vehicles
+ORDER BY year DESC;
+
+2) LIMIT (and OFFSET)
+Restrict how many rows you return. OFFSET skips the first N rows.
+Examples:
+-- Top 3 most expensive items
+SELECT item_id, name, price
+FROM items
+ORDER BY price DESC
+LIMIT 3;
+
+-- Skip the first 5, return the next 5
+SELECT item_id, name
+FROM items
+ORDER BY item_id
+LIMIT 5 OFFSET 5;
+
+3) GROUP BY and (+ HAVING) It’s used to filter groups after the GROUP BY. It’s normally 
+used with aggregate functions, which can be numeric or not.
+
+Aggregate rows by a key and compute sums, counts, averages, etc.
+Examples:
+
+-- Number of rents per state
+SELECT state, COUNT(*) AS num_rents
+FROM rents
+GROUP BY state
+ORDER BY num_rents DESC;
+
+-- Filter groups with HAVING (only items whose total sold > 2),
+SELECT oi.item_id, SUM(oi.quantity) AS total_qty
+FROM order_items AS oi
+GROUP BY oi.item_id
+HAVING SUM(oi.quantity) > 2;
+
+4) JOINs (three common types)
+
+a) INNER JOIN: only rows that match on both sides.
+-- Books with their authors
+SELECT b.id AS book_id, b.name AS book_name, a.name AS author_name
+FROM books AS b
+INNER JOIN authors AS a ON a.id = b.author_id;
+
+b) LEFT JOIN: all rows from the left table, NULLs when there is no match on the right.
+-- Authors and (if any) their books
+SELECT a.id AS author_id, a.name AS author_name, b.name AS book_name
+FROM authors AS a
+LEFT JOIN books AS b ON b.author_id = a.id;
+
+c) (SQLite note) RIGHT/FULL OUTER JOIN are not supported.
+You can emulate a RIGHT JOIN by swapping sides in a LEFT JOIN.
+You can emulate a FULL OUTER JOIN by UNION of two LEFT JOINs:
+-- FULL OUTER JOIN of authors and books by author_id (emulated)
+SELECT a.id AS author_id, a.name AS author_name, b.name AS book_name
+FROM authors AS a
+LEFT JOIN books AS b ON b.author_id = a.id
+UNION
+SELECT a.id AS author_id, a.name AS author_name, b.name AS book_name
+FROM books AS b
+LEFT JOIN authors AS a ON a.id = b.author_id;
+
+(Alternatively, use NOT EXISTS for anti-joins when appropriate.)
+
