@@ -1,0 +1,63 @@
+Normalization Walkthroughs
+
+Target: reach Third Normal Form (3NF). We identify keys and functional dependencies, then decompose to remove partial and transitive dependencies.
+
+I) Orders (flat table → normalized)
+
+Original columns:
+Order ID, Customer Name, Customer Phone, Address, Item ID, Item Name, Price, Quantity, Special Request, Delivery Time
+
+Assumed key in the flat table: (Order ID, Item ID).
+
+Functional dependencies observed:
+- Order ID → Customer Name, Customer Phone, Address, Delivery Time  (order-level data)
+- Item ID  → Item Name, Price                                    (item-level data)
+- (Order ID, Item ID) → Quantity, Special Request                  (line-level data)
+
+1NF
+- Data is atomic already (no repeating groups in a single cell). No changes needed.
+
+2NF (remove partial dependencies on part of the composite key)
+- Move order-level attributes to an Orders table keyed by Order ID.
+- Move item-level attributes to an Items table keyed by Item ID.
+- Keep line-level attributes in an Order_Items table keyed by (Order ID, Item ID).
+- Create Customers table so customer data is not repeated per order.
+
+Intermediate structure (conceptual):
+orders_raw(OrderID, CustomerName, Phone, Address, DeliveryTime, ItemID, Quantity, SpecialRequest)
+
+3NF (remove transitive dependencies)
+- Customer attributes depend on Customer (not on OrderID directly) → separate Customers.
+- Final schema:
+  Customers(customer_id, first_name, last_name, phone_number, address)
+  Items(item_id, name, price)
+  Orders(order_id, customer_id, delivery_time)
+  Order_Items(order_id, item_id, quantity, special_request)
+
+All non-key attributes depend only on their table’s key.
+
+II) Automobiles (flat table → normalized)
+
+Original columns:
+VIN, Make, Model, Year, Color, Owner ID, Owner Name, Owner Phone, Insurance Company, Insurance Policy
+
+Functional dependencies observed:
+- VIN → Make, Model, Year, Color                        (vehicle attributes)
+- Owner ID → Owner Name, Owner Phone                    (owner attributes)
+- Insurance Policy → Insurance Company                   (policy attributes)
+
+Flat rows show multiple owners/policies for same VIN → many-to-many over time.
+
+1NF
+- Atomic values per column. No change needed.
+
+2NF / 3NF
+- Create base entities for independent determinants:
+  Vehicles(vin PK, make, model, year, color)
+  Owners(owner_id PK, name, phone)
+  Insurance_Policies(policy_number PK, company)
+- Model the relationship (ownership + policy) with a link table:
+  Vehicle_Owners(vin, owner_id, policy_number, PRIMARY KEY(vin, owner_id, policy_number))
+
+Now each table’s non-key attributes depend solely on its key, eliminating both partial and transitive dependencies. 
+Optionally you can add effective dates in Vehicle_Owners if you need ownership history.
