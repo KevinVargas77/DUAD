@@ -2,7 +2,7 @@ import argparse
 from config import engine, SessionLocal
 from models import Base
 from managers import UserManager, CarManager, AddressManager
-from seed import seed_with_faker
+from seeds import seed_with_faker
 
 def print_user_assets(session, user_id):
     user = session.get(UserManager.model_class, user_id)
@@ -33,25 +33,26 @@ def main():
     parser.add_argument("--print-assets", type=int, metavar="USER_ID", help="Print cars and addresses of a user")
     args = parser.parse_args()
 
-    with SessionLocal() as session:
-        user_mgr = UserManager(session)
-        car_mgr = CarManager(session)
-        addr_mgr = AddressManager(session)
+    user_mgr = UserManager()
+    car_mgr = CarManager()
+    addr_mgr = AddressManager()
 
-        if args.seed:
-            seed_with_faker(session)
+    if args.seed:
+        seed_with_faker()
 
-        if args.list == "users":
-            for u in user_mgr.list_users():
-                print(u)
-        elif args.list == "cars":
-            for c in car_mgr.list_cars():
-                print(c)
-        elif args.list == "addresses":
-            for a in addr_mgr.list_addresses():
-                print(a)
+    if args.list == "users":
+        for u in user_mgr.list_users():
+            print(u)
+    elif args.list == "cars":
+        for c in car_mgr.list_cars():
+            print(c)
+    elif args.list == "addresses":
+        for a in addr_mgr.list_addresses():
+            print(a)
 
-        if args.print_assets is not None:
+    if args.print_assets is not None:
+        # Print assets using a session context
+        with SessionLocal() as session:
             print_user_assets(session, args.print_assets)
 
 if __name__ == "__main__":
