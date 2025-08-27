@@ -1,0 +1,10 @@
+flask
+flask-sqlalchemy
+psycopg2-binary
+flask-marshmallow
+marshmallow
+flask-jwt-extended
+flask-migrate
+python-slugify
+redis
+pytest
