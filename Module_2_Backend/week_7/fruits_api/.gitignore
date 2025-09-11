@@ -52,3 +52,6 @@ ENV/
 *.swp
 *.swo
 .DS_Store
+*.pem
+*.key
+.env
